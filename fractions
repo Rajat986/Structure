@@ -16,7 +16,7 @@ struct answers
 {
     struct answer answers[10];
 };
-void input()
+struct fractions input()
 {
     struct fractions fs;
     printf("Enter the number of fractions:");
@@ -28,26 +28,27 @@ void input()
         printf("Enter the denominator:");
         scanf("%d",&fs.fractions[i].den);
     }
+    return fs;
 
 }
-void add()
+/*void add()
 {
     struct fractions fs;
-    
 
-}
-void display()
+
+}*/
+void display(struct fractions fs)
 {
-    struct fractions fs;
     for(int i=0;i<fs.n;i++)
     {
-    printf("num[%d]=%d den[%d]=%d ",i+1,fs.fractions[i].num,i+1,fs.fractions[i].den);
+        printf("num[%d]=%d den[%d]=%d ",i+1,fs.fractions[i].num,i+1,fs.fractions[i].den);
     }
 }
 
 
 void main()
 {
-    input();
-    display();
+    struct fractions fs;
+    fs=input();
+    display(fs);
 }

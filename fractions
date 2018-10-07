@@ -60,15 +60,34 @@ void display(struct fractions fs)
         printf("Fraction[%d]= %d/%d\n",i+1,fs.fractions[i].num,fs.fractions[i].den);
     }
     /*printf("Sum Num=%d\nSum Den=%d\n",fs.fractions[fs.n].num,fs.fractions[fs.n].den);*/
-    printf("\nAnswer = %d/%d",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
+    printf("\nAnswer = %d/%d\n\n",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
 }
 
+struct fractions reduce_ans(struct fractions fs)
+{
+    while(1)
+    {
+        for(int i=2;i<6;i++)
+        {
+            if((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
+            {
+                fs.fractions[fs.n].num = fs.fractions[fs.n].num / i;
+                fs.fractions[fs.n].den = fs.fractions[fs.n].den / i;
+            }
+            else
+                return fs;
+        }
+
+    }
+}
 
 int main()
 {
     struct fractions fs;
     fs=input();
     fs=add(fs);
+    display(fs);
+    fs=reduce_ans(fs);
     display(fs);
     return 0;
 }

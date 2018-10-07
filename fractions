@@ -57,9 +57,10 @@ void display(struct fractions fs)
 {
     for(int i=0;i<fs.n;i++)
     {
-        printf("Num[%d]=%d Den[%d]=%d\n",i+1,fs.fractions[i].num,i+1,fs.fractions[i].den);
+        printf("Fraction[%d]= %d/%d\n",i+1,fs.fractions[i].num,fs.fractions[i].den);
     }
-    printf("Sum Num=%d\nSum Den=%d",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
+    printf("Sum Num=%d\nSum Den=%d\n",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
+    printf("Answer = %d/%d",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
 }
 
 

@@ -23,9 +23,9 @@ struct fractions input()
     scanf("%d",&fs.n);
     for(int i=0;i<fs.n;i++)
     {
-        printf("Enter the numerator:");
+        printf("Enter the numerator[%d]:",i+1);
         scanf("%d",&fs.fractions[i].num);
-        printf("Enter the denominator:");
+        printf("Enter the denominator[%d]:",i+1);
         scanf("%d",&fs.fractions[i].den);
     }
     return fs;
@@ -33,11 +33,11 @@ struct fractions input()
 }
 struct fractions add(struct fractions fs)
 {
-    int s_n=0,s_d=0;
-    for(int i=0;i<fs.n-1;i=i+2)
+    int s_n=0,s_d=1;
+    for(int i=0;i<fs.n;i++)
     {
-        s_n=s_n+((fs.fractions[i].num*fs.fractions[i+1].den)+(fs.fractions[i+1].num*fs.fractions[i].den));
-        s_d=s_d+(fs.fractions[i].den*fs.fractions[i+1].den);
+        s_n=s_n+((fs.fractions[i].num*fs.fractions[i+1].den));
+        s_d=s_d*(fs.fractions[i].den);
     }
     fs.fractions[fs.n].num=s_n;
     fs.fractions[fs.n].den=s_d;
@@ -54,10 +54,11 @@ void display(struct fractions fs)
 }
 
 
-void main()
+int main()
 {
     struct fractions fs;
     fs=input();
     fs=add(fs);
     display(fs);
+    return 0;
 }

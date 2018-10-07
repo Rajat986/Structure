@@ -31,18 +31,26 @@ struct fractions input()
     return fs;
 
 }
-/*void add()
+struct fractions add(struct fractions fs)
 {
-    struct fractions fs;
+    int s_n=0,s_d=0;
+    for(int i=0;i<fs.n-1;i=i+2)
+    {
+        s_n=s_n+((fs.fractions[i].num*fs.fractions[i+1].den)+(fs.fractions[i+1].num*fs.fractions[i].den));
+        s_d=s_d+(fs.fractions[i].den*fs.fractions[i+1].den);
+    }
+    fs.fractions[fs.n].num=s_n;
+    fs.fractions[fs.n].den=s_d;
+    return fs;
+}
 
-
-}*/
 void display(struct fractions fs)
 {
     for(int i=0;i<fs.n;i++)
     {
-        printf("num[%d]=%d den[%d]=%d ",i+1,fs.fractions[i].num,i+1,fs.fractions[i].den);
+        printf("Num[%d]=%d Den[%d]=%d\n",i+1,fs.fractions[i].num,i+1,fs.fractions[i].den);
     }
+    printf("Sum Num=%d\nSum Den=%d",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
 }
 
 
@@ -50,5 +58,6 @@ void main()
 {
     struct fractions fs;
     fs=input();
+    fs=add(fs);
     display(fs);
 }

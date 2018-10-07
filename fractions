@@ -34,11 +34,20 @@ struct fractions input()
 struct fractions add(struct fractions fs)
 {
     int s_n=0,s_d=1;
-    for(int i=0;i<fs.n;i++)
+    s_n=(fs.fractions[0].num*fs.fractions[1].den)+(fs.fractions[1].num*fs.fractions[0].den);
+    s_d=fs.fractions[0].den*fs.fractions[1].den;
+    printf("S_N=%d\n",s_n);
+    for(int i=2;i<fs.n;i++)
     {
-        s_n=s_n+((fs.fractions[i].num*fs.fractions[i+1].den));
+        s_n=((s_n*fs.fractions[i].den)+(fs.fractions[i].num*s_d));
         s_d=s_d*(fs.fractions[i].den);
     }
+    s_d=1;
+    for(int i=0;i<fs.n;i++)
+    {
+        s_d=s_d*(fs.fractions[i].den);
+    }
+
     fs.fractions[fs.n].num=s_n;
     fs.fractions[fs.n].den=s_d;
     return fs;

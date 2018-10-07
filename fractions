@@ -67,7 +67,7 @@ struct fractions reduce_ans(struct fractions fs)
 {
     while(1)
     {
-        for(int i=2;i<6;i++)
+        for(int i=2;i<=13;i++)
         {
             if((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
             {

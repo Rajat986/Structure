@@ -74,10 +74,8 @@ struct fractions reduce_ans(struct fractions fs)
                 fs.fractions[fs.n].num = fs.fractions[fs.n].num / i;
                 fs.fractions[fs.n].den = fs.fractions[fs.n].den / i;
             }
-            else
-                return fs;
         }
-
+        return fs;
     }
 }
 

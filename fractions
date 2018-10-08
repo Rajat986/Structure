@@ -69,10 +69,13 @@ struct fractions reduce_ans(struct fractions fs)
     {
         for(int i=2;i<=13;i++)
         {
-            if((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
+            while((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
             {
-                fs.fractions[fs.n].num = fs.fractions[fs.n].num / i;
-                fs.fractions[fs.n].den = fs.fractions[fs.n].den / i;
+                if((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
+                {
+                    fs.fractions[fs.n].num = fs.fractions[fs.n].num / i;
+                    fs.fractions[fs.n].den = fs.fractions[fs.n].den / i;
+                }
             }
         }
         return fs;

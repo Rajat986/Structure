@@ -8,14 +8,7 @@ struct fractions
     int n;
     struct fraction fractions[10];
 };
-struct answer
-{
-    int num,den;
-};
-struct answers
-{
-    struct answer answers[10];
-};
+
 struct fractions input()
 {
     struct fractions fs;

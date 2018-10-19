@@ -24,64 +24,63 @@ struct fractions input()
     return fs;
 
 }
-struct fractions add(struct fractions fs)
+struct fraction add(struct fractions fs)
 {
-    int s_n,s_d;
-    s_n=(fs.fractions[0].num*fs.fractions[1].den)+(fs.fractions[1].num*fs.fractions[0].den);
-    s_d=fs.fractions[0].den*fs.fractions[1].den;
+    struct fraction FRACT;
+    FRACT.num=(fs.fractions[0].num*fs.fractions[1].den)+(fs.fractions[1].num*fs.fractions[0].den);
+    FRACT.den=fs.fractions[0].den*fs.fractions[1].den;
     /*printf("S_N=%d\n",s_n);*/
     for(int i=2;i<fs.n;i++)
     {
-        s_n=((s_n*fs.fractions[i].den)+(fs.fractions[i].num*s_d));
-        s_d=s_d*(fs.fractions[i].den);
+        FRACT.num=((FRACT.num*fs.fractions[i].den)+(fs.fractions[i].num*FRACT.den));
+        FRACT.den=FRACT.den*(fs.fractions[i].den);
     }
-    s_d=1;
+    FRACT.den=1;
     for(int i=0;i<fs.n;i++)
     {
-        s_d=s_d*(fs.fractions[i].den);
+        FRACT.den=FRACT.den*(fs.fractions[i].den);
     }
-
-    fs.fractions[fs.n].num=s_n;
-    fs.fractions[fs.n].den=s_d;
-    return fs;
+    return FRACT;
 }
 
-void display(struct fractions fs)
+void display(struct fraction FRACT)
 {
-    for(int i=0;i<fs.n;i++)
+    /*for(int i=0;i<fs.n;i++)
     {
         printf("Fraction[%d]= %d/%d\n",i+1,fs.fractions[i].num,fs.fractions[i].den);
-    }
+    }*/
     /*printf("Sum Num=%d\nSum Den=%d\n",fs.fractions[fs.n].num,fs.fractions[fs.n].den);*/
-    printf("\nAnswer = %d/%d\n\n",fs.fractions[fs.n].num,fs.fractions[fs.n].den);
+    printf("\nAnswer = %d/%d\n\n",FRACT.num,FRACT.den);
 }
 
-struct fractions reduce_ans(struct fractions fs)
+struct fraction reduce_ans(struct fraction FRACT)
 {
     while(1)
     {
         for(int i=2;i<=13;i++)
         {
-            while((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
+            while((FRACT.num % i == 0) && (FRACT.den % i == 0))
             {
-                if((fs.fractions[fs.n].num % i == 0) && (fs.fractions[fs.n].den % i == 0))
+                if((FRACT.num % i == 0) && (FRACT.den % i == 0))
                 {
-                    fs.fractions[fs.n].num = fs.fractions[fs.n].num / i;
-                    fs.fractions[fs.n].den = fs.fractions[fs.n].den / i;
+                    FRACT.num = FRACT.num / i;
+                    FRACT.den = FRACT.den / i;
                 }
             }
         }
-        return fs;
+        return FRACT;
     }
 }
 
 int main()
 {
     struct fractions fs;
+    struct fraction FRACT;
     fs=input();
-    fs=add(fs);
-    display(fs);
-    fs=reduce_ans(fs);
-    display(fs);
+    FRACT=add(fs);
+    display(FRACT);
+    FRACT=reduce_ans(FRACT);
+    printf("Answer after reduction:-");
+    display(FRACT);
     return 0;
 }
